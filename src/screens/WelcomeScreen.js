@@ -20,8 +20,8 @@ export default function WelcomeScreen({ navigation }) {
           <View style={styles.logoIcon}>
             <FontAwesome5 name="heartbeat" size={40} color={COLORS.white} />
           </View>
-          <Text style={styles.logoText}>MedHome</Text>
-          <Text style={styles.logoSubtext}>Medical Home Services</Text>
+          <Text style={styles.logoText}>Doctor Ghar Par</Text>
+          <Text style={styles.logoSubtext}>Ghar Bethay Ilaj</Text>
         </View>
 
         <View style={styles.illustrationContainer}>
@@ -41,10 +41,10 @@ export default function WelcomeScreen({ navigation }) {
       </View>
 
       <View style={styles.bottomSection}>
-        <Text style={styles.title}>Healthcare at Your Doorstep</Text>
+        <Text style={styles.title}>Ghar Bethay Doctor Ki Sahulat</Text>
         <Text style={styles.subtitle}>
-          Book doctors, nurses, lab tests, X-rays, and more — all from the
-          comfort of your home.
+          Doctor, nurse, lab test, X-ray aur bohat kuch — ab ghar par
+          milega. Book karein aur chain se ilaj karwayein.
         </Text>
 
         <View style={styles.buttonGroup}>

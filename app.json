@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MedHomeServices",
-    "slug": "MedHomeServices",
+    "name": "Doctor Ghar Par",
+    "slug": "doctor-ghar-par",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

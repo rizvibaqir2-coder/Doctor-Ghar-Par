@@ -81,7 +81,7 @@ export default function ProfileScreen({ navigation }) {
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
 
-      <Text style={styles.version}>MedHome v1.0.0</Text>
+      <Text style={styles.version}>Doctor Ghar Par v1.0.0</Text>
       <View style={{ height: 100 }} />
     </ScrollView>
   );
