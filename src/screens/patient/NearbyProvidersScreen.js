@@ -18,6 +18,8 @@ const FILTER_OPTIONS = [
   { id: 'Lab Technician', label: 'Lab', icon: 'flask' },
   { id: 'X-Ray Technician', label: 'X-Ray', icon: 'x-ray' },
   { id: 'Physiotherapist', label: 'Physio', icon: 'running' },
+  { id: 'Wound', label: 'Dressing', icon: 'band-aid' },
+  { id: 'Palliative', label: 'Palliative', icon: 'hands-helping' },
 ];
 
 const SORT_OPTIONS = ['Nearest', 'Top Rated', 'Lowest Price'];
@@ -29,7 +31,10 @@ export default function NearbyProvidersScreen({ navigation }) {
   const filteredProviders =
     activeFilter === 'all'
       ? NEARBY_PROVIDERS
-      : NEARBY_PROVIDERS.filter((p) => p.role === activeFilter);
+      : NEARBY_PROVIDERS.filter((p) =>
+          p.role === activeFilter ||
+          p.specialization.toLowerCase().includes(activeFilter.toLowerCase())
+        );
 
   const sortedProviders = [...filteredProviders].sort((a, b) => {
     switch (activeSort) {
