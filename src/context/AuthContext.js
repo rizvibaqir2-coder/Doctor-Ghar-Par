@@ -6,9 +6,8 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const login = async (email, password) => {
+  const login = async (email, password, role = 'patient') => {
     setIsLoading(true);
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setUser({
       id: '1',
@@ -17,12 +16,13 @@ export function AuthProvider({ children }) {
       phone: '+92 300 1234567',
       address: '123 Main Street, Apt 4B',
       avatar: null,
+      role,
     });
     setIsLoading(false);
     return true;
   };
 
-  const register = async (name, email, phone, password) => {
+  const register = async (name, email, phone, password, role = 'patient') => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setUser({
@@ -32,6 +32,7 @@ export function AuthProvider({ children }) {
       phone,
       address: '',
       avatar: null,
+      role,
     });
     setIsLoading(false);
     return true;

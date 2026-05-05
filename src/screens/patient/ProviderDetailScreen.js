@@ -133,7 +133,7 @@ export default function ProviderDetailScreen({ route, navigation }) {
           <View style={styles.priceCard}>
             <View>
               <Text style={styles.priceLabel}>Starting from</Text>
-              <Text style={styles.priceValue}>${provider.price}</Text>
+              <Text style={styles.priceValue}>Rs {provider.price}</Text>
             </View>
             <Text style={styles.priceNote}>per visit</Text>
           </View>
@@ -175,7 +175,7 @@ export default function ProviderDetailScreen({ route, navigation }) {
       <View style={styles.bottomBar}>
         <View style={styles.bottomPrice}>
           <Text style={styles.bottomPriceLabel}>From</Text>
-          <Text style={styles.bottomPriceValue}>${provider.price}</Text>
+          <Text style={styles.bottomPriceValue}>Rs {provider.price}</Text>
         </View>
         <Button
           title="Book Now"

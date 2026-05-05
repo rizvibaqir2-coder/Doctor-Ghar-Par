@@ -57,7 +57,7 @@ export default function BookingsScreen() {
       </View>
 
       <View style={styles.cardFooter}>
-        <Text style={styles.price}>${item.price}</Text>
+        <Text style={styles.price}>Rs {item.price}</Text>
         {item.status === 'pending' && (
           <TouchableOpacity style={styles.cancelButton}>
             <Text style={styles.cancelText}>Cancel</Text>

@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
     >
       <ServiceIcon icon={item.icon} color={item.color} bgColor={item.bgColor} />
       <Text style={styles.serviceName}>{item.name}</Text>
-      <Text style={styles.servicePrice}>From ${item.startingPrice}</Text>
+      <Text style={styles.servicePrice}>From Rs {item.startingPrice}</Text>
       <View style={styles.ratingRow}>
         <FontAwesome5 name="star" solid size={10} color="#F59E0B" />
         <Text style={styles.ratingText}>{item.rating}</Text>

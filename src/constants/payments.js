@@ -1,5 +1,19 @@
 export const PLATFORM_FEE_PERCENT = 30;
 
+// Lab platform fee is negotiable per lab based on quality & market presence
+// Range: 10% - 30%, set during lab approval
+export const LAB_FEE_RANGE = { min: 10, max: 30 };
+
+// Medical Store category-based platform fees
+export const STORE_FEE_CATEGORIES = {
+  surgical: { name: 'Surgical Items', percent: 50 },
+  multinational: { name: 'Multinational / Branded', percent: 10 },
+  local: { name: 'Local / Generic Medicines', percent: 20 },
+  otc: { name: 'OTC & Personal Care', percent: 20 },
+  devices: { name: 'Medical Devices', percent: 15 },
+  supplements: { name: 'Vitamins & Supplements', percent: 20 },
+};
+
 export const PAYMENT_METHODS = [
   {
     id: 'cash',
@@ -92,6 +106,133 @@ export const PROVIDER_TRANSACTIONS = [
     platformFee: 150,
     providerEarnings: 350,
     paymentMethod: 'online',
+    status: 'paid',
+  },
+];
+
+// Example lab with 15% negotiated fee (based on quality & market presence)
+export const CURRENT_LAB_FEE_PERCENT = 15;
+
+export const LAB_TRANSACTIONS = [
+  {
+    id: 'lt1',
+    patientName: 'Ali Hassan',
+    testName: 'Complete Blood Count (CBC)',
+    date: '2026-05-04',
+    servicePrice: 500,
+    feePercent: 15,
+    platformFee: 75,
+    labEarnings: 425,
+    paymentMethod: 'cash',
+    status: 'paid',
+  },
+  {
+    id: 'lt2',
+    patientName: 'Fatima Noor',
+    testName: 'Thyroid Function Test',
+    date: '2026-05-03',
+    servicePrice: 1200,
+    feePercent: 15,
+    platformFee: 180,
+    labEarnings: 1020,
+    paymentMethod: 'online',
+    status: 'paid',
+  },
+  {
+    id: 'lt3',
+    patientName: 'Usman Tariq',
+    testName: 'Liver Function Test',
+    date: '2026-05-02',
+    servicePrice: 800,
+    feePercent: 15,
+    platformFee: 120,
+    labEarnings: 680,
+    paymentMethod: 'card',
+    status: 'paid',
+  },
+  {
+    id: 'lt4',
+    patientName: 'Nadia Raza',
+    testName: 'Urine Analysis',
+    date: '2026-05-01',
+    servicePrice: 300,
+    feePercent: 15,
+    platformFee: 45,
+    labEarnings: 255,
+    paymentMethod: 'cash',
+    status: 'pending',
+  },
+];
+
+export const STORE_TRANSACTIONS = [
+  {
+    id: 'st1',
+    patientName: 'Ali Hassan',
+    orderName: 'Augmentin 625mg, Panadol, Brufen',
+    category: 'multinational',
+    categoryLabel: 'Multinational / Branded',
+    date: '2026-05-04',
+    servicePrice: 850,
+    feePercent: 10,
+    platformFee: 85,
+    storeEarnings: 765,
+    paymentMethod: 'cash',
+    status: 'paid',
+  },
+  {
+    id: 'st2',
+    patientName: 'Sana Khan',
+    orderName: 'Surgical Gloves, Syringes, Bandages',
+    category: 'surgical',
+    categoryLabel: 'Surgical Items',
+    date: '2026-05-03',
+    servicePrice: 2800,
+    feePercent: 50,
+    platformFee: 1400,
+    storeEarnings: 1400,
+    paymentMethod: 'online',
+    status: 'paid',
+  },
+  {
+    id: 'st3',
+    patientName: 'Usman Tariq',
+    orderName: 'BP Monitor, Digital Thermometer',
+    category: 'devices',
+    categoryLabel: 'Medical Devices',
+    date: '2026-05-02',
+    servicePrice: 3500,
+    feePercent: 15,
+    platformFee: 525,
+    storeEarnings: 2975,
+    paymentMethod: 'card',
+    status: 'paid',
+  },
+  {
+    id: 'st4',
+    patientName: 'Fatima Noor',
+    orderName: 'Vitamin D3, Calcium, Iron Supplement',
+    category: 'supplements',
+    categoryLabel: 'Vitamins & Supplements',
+    date: '2026-05-01',
+    servicePrice: 1200,
+    feePercent: 20,
+    platformFee: 240,
+    storeEarnings: 960,
+    paymentMethod: 'cash',
+    status: 'pending',
+  },
+  {
+    id: 'st5',
+    patientName: 'Kamran Ahmed',
+    orderName: 'Local Cough Syrup, Paracetamol Generic',
+    category: 'local',
+    categoryLabel: 'Local / Generic',
+    date: '2026-04-30',
+    servicePrice: 400,
+    feePercent: 20,
+    platformFee: 80,
+    storeEarnings: 320,
+    paymentMethod: 'cash',
     status: 'paid',
   },
 ];

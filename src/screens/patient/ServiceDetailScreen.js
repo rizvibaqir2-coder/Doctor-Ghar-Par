@@ -80,11 +80,26 @@ export default function ServiceDetailScreen({ route, navigation }) {
           <View>
             <Text style={styles.priceLabel}>Starting from</Text>
             <Text style={styles.priceValue}>
-              ${service.startingPrice}
+              Rs {service.startingPrice}
             </Text>
           </View>
           <Text style={styles.priceNote}>per visit</Text>
         </View>
+
+        {service.pricingTiers && (
+          <View style={styles.section}>
+            <Text style={[styles.sectionTitle, { marginTop: SIZES.md }]}>Pricing Packages</Text>
+            {service.pricingTiers.map((tier, index) => (
+              <View key={index} style={styles.tierCard}>
+                <View style={styles.tierHeader}>
+                  <Text style={styles.tierName}>{tier.name}</Text>
+                  <Text style={[styles.tierPrice, { color: service.color }]}>Rs {tier.price.toLocaleString()}</Text>
+                </View>
+                <Text style={styles.tierDesc}>{tier.description}</Text>
+              </View>
+            ))}
+          </View>
+        )}
 
         <View style={{ height: 100 }} />
       </ScrollView>
@@ -213,6 +228,32 @@ const styles = StyleSheet.create({
   },
   priceNote: {
     ...FONTS.body,
+    color: COLORS.gray,
+  },
+  tierCard: {
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.radius,
+    padding: SIZES.md,
+    marginBottom: SIZES.sm,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+  },
+  tierHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  tierName: {
+    ...FONTS.h4,
+    color: COLORS.black,
+  },
+  tierPrice: {
+    ...FONTS.h3,
+    fontWeight: '700',
+  },
+  tierDesc: {
+    ...FONTS.caption,
     color: COLORS.gray,
   },
   bottomBar: {

@@ -59,6 +59,18 @@ export default function WelcomeScreen({ navigation }) {
             variant="outline"
             style={styles.providerButton}
           />
+          <Button
+            title="I'm a Lab"
+            onPress={() => navigation.navigate('LabLogin')}
+            variant="outline"
+            style={styles.labButton}
+          />
+          <Button
+            title="I'm a Medical Store"
+            onPress={() => navigation.navigate('StoreLogin')}
+            variant="outline"
+            style={styles.storeButton}
+          />
         </View>
       </View>
     </View>
@@ -170,4 +182,10 @@ const styles = StyleSheet.create({
     marginBottom: SIZES.sm,
   },
   providerButton: {},
+  labButton: {
+    borderColor: '#F59E0B',
+  },
+  storeButton: {
+    borderColor: '#10B981',
+  },
 });

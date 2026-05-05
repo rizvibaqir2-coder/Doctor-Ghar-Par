@@ -15,7 +15,10 @@ import InputField from '../../components/InputField';
 import { COLORS, SIZES, FONTS } from '../../constants';
 import { useAuth } from '../../context/AuthContext';
 
-export default function ProviderLoginScreen({ navigation }) {
+const STORE_COLOR = '#10B981';
+const STORE_BG = '#D1FAE5';
+
+export default function StoreLoginScreen({ navigation }) {
   const { login, isLoading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +28,7 @@ export default function ProviderLoginScreen({ navigation }) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
-    const success = await login(email, password, 'provider');
+    const success = await login(email, password, 'store');
     if (success) {
       // Navigation handled by AppNavigator based on role
     }
@@ -49,11 +52,11 @@ export default function ProviderLoginScreen({ navigation }) {
 
         <View style={styles.header}>
           <View style={styles.iconContainer}>
-            <FontAwesome5 name="user-md" size={28} color={COLORS.secondary} />
+            <FontAwesome5 name="pills" size={28} color={STORE_COLOR} />
           </View>
-          <Text style={styles.title}>Provider Login</Text>
+          <Text style={styles.title}>Medical Store Login</Text>
           <Text style={styles.subtitle}>
-            Sign in to manage your appointments and patients
+            Sign in to manage your pharmacy orders and inventory
           </Text>
         </View>
 
@@ -61,7 +64,7 @@ export default function ProviderLoginScreen({ navigation }) {
           <InputField
             label="Email Address"
             icon="envelope"
-            placeholder="Enter your email"
+            placeholder="Enter your store email"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -76,23 +79,23 @@ export default function ProviderLoginScreen({ navigation }) {
           />
 
           <TouchableOpacity style={styles.forgotPassword}>
-            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            <Text style={[styles.forgotPasswordText, { color: STORE_COLOR }]}>Forgot Password?</Text>
           </TouchableOpacity>
 
           <Button
             title="Sign In"
             onPress={handleLogin}
             loading={isLoading}
-            style={styles.loginButton}
+            style={[styles.loginButton, { backgroundColor: STORE_COLOR }]}
           />
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>New provider? </Text>
+          <Text style={styles.footerText}>New store? </Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ProviderRegister')}
+            onPress={() => navigation.navigate('StoreRegister')}
           >
-            <Text style={styles.footerLink}>Register Here</Text>
+            <Text style={[styles.footerLink, { color: STORE_COLOR }]}>Register Here</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 20,
-    backgroundColor: COLORS.secondaryLight,
+    backgroundColor: STORE_BG,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: SIZES.md,
@@ -157,11 +160,9 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     ...FONTS.bodyBold,
-    color: COLORS.secondary,
   },
   loginButton: {
     marginTop: SIZES.sm,
-    backgroundColor: COLORS.secondary,
   },
   footer: {
     flexDirection: 'row',
@@ -175,6 +176,5 @@ const styles = StyleSheet.create({
   },
   footerLink: {
     ...FONTS.bodyBold,
-    color: COLORS.secondary,
   },
 });

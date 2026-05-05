@@ -135,7 +135,7 @@ export default function NearbyProvidersScreen({ navigation }) {
         </View>
         <View style={styles.priceSection}>
           <Text style={styles.priceLabel}>From</Text>
-          <Text style={styles.priceValue}>${item.price}</Text>
+          <Text style={styles.priceValue}>Rs {item.price}</Text>
         </View>
       </View>
 

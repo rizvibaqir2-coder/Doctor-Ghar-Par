@@ -96,7 +96,7 @@ export default function BookServiceScreen({ route, navigation }) {
           <View style={styles.serviceText}>
             <Text style={styles.serviceName}>{service.name}</Text>
             <Text style={styles.servicePrice}>
-              From ${service.startingPrice} | {service.duration}
+              From Rs {service.startingPrice} | {service.duration}
             </Text>
           </View>
         </View>
@@ -213,7 +213,7 @@ export default function BookServiceScreen({ route, navigation }) {
           </View>
           <View style={[styles.summaryRow, styles.totalRow]}>
             <Text style={styles.totalLabel}>Estimated Total</Text>
-            <Text style={styles.totalValue}>${service.startingPrice}</Text>
+            <Text style={styles.totalValue}>Rs {service.startingPrice}</Text>
           </View>
         </View>
 

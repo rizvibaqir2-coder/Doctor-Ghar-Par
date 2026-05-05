@@ -259,15 +259,21 @@ export const SERVICES = [
     color: '#78716C',
     bgColor: '#F5F5F4',
     description:
-      'Professional plaster of paris (POP) casting services at home for fractures and orthopedic support. Price varies by body area.',
+      'Professional plaster of paris (POP) casting services at home for fractures and orthopedic support. Price varies by body area. POP with medicine package available for Rs 5,000 - 7,000.',
     features: [
       'Arm & wrist POP casting',
       'Leg & ankle POP casting',
       'Finger & toe splinting',
       'POP removal & replacement',
       'Post-fracture care & advice',
+      'POP with medicine package (Rs 5,000 - 7,000)',
     ],
     startingPrice: 2000,
+    pricingTiers: [
+      { name: 'POP Cast Only', price: 2000, description: 'Basic POP casting by body area' },
+      { name: 'POP + Medicine (Standard)', price: 5000, description: 'POP cast with standard pain relief & anti-inflammatory medicine' },
+      { name: 'POP + Medicine (Premium)', price: 7000, description: 'POP cast with premium medicine, follow-up visit & post-care kit' },
+    ],
     duration: '30-90 min',
     rating: 4.7,
     reviewCount: 63,

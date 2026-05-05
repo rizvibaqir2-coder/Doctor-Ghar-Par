@@ -86,7 +86,7 @@ export default function ProviderDashboardScreen() {
       </View>
 
       <View style={styles.cardActions}>
-        <Text style={styles.price}>${item.price}</Text>
+        <Text style={styles.price}>Rs {item.price}</Text>
         {item.status === 'pending' && (
           <View style={styles.actionButtons}>
             <TouchableOpacity style={styles.declineBtn}>

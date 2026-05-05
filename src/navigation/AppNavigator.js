@@ -23,6 +23,18 @@ import ProviderProfileScreen from '../screens/provider/ProviderProfileScreen';
 import ProviderEarningsScreen from '../screens/provider/ProviderEarningsScreen';
 import PaymentScreen from '../screens/patient/PaymentScreen';
 
+import LabLoginScreen from '../screens/lab/LabLoginScreen';
+import LabRegisterScreen from '../screens/lab/LabRegisterScreen';
+import LabDashboardScreen from '../screens/lab/LabDashboardScreen';
+import LabEarningsScreen from '../screens/lab/LabEarningsScreen';
+import LabProfileScreen from '../screens/lab/LabProfileScreen';
+
+import StoreLoginScreen from '../screens/store/StoreLoginScreen';
+import StoreRegisterScreen from '../screens/store/StoreRegisterScreen';
+import StoreDashboardScreen from '../screens/store/StoreDashboardScreen';
+import StoreEarningsScreen from '../screens/store/StoreEarningsScreen';
+import StoreProfileScreen from '../screens/store/StoreProfileScreen';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -148,6 +160,124 @@ function ProviderTabs() {
   );
 }
 
+function LabTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: COLORS.white,
+          borderTopWidth: 0,
+          height: 85,
+          paddingBottom: 30,
+          paddingTop: 10,
+          shadowColor: COLORS.shadow,
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 8,
+        },
+        tabBarActiveTintColor: '#F59E0B',
+        tabBarInactiveTintColor: COLORS.gray,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="LabDashboard"
+        component={LabDashboardScreen}
+        options={{
+          tabBarLabel: 'Orders',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="clipboard-list" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LabEarnings"
+        component={LabEarningsScreen}
+        options={{
+          tabBarLabel: 'Earnings',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="wallet" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="LabProfile"
+        component={LabProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="flask" size={20} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function StoreTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: COLORS.white,
+          borderTopWidth: 0,
+          height: 85,
+          paddingBottom: 30,
+          paddingTop: 10,
+          shadowColor: COLORS.shadow,
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 8,
+        },
+        tabBarActiveTintColor: '#10B981',
+        tabBarInactiveTintColor: COLORS.gray,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="StoreDashboard"
+        component={StoreDashboardScreen}
+        options={{
+          tabBarLabel: 'Orders',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="boxes" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="StoreEarnings"
+        component={StoreEarningsScreen}
+        options={{
+          tabBarLabel: 'Earnings',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="wallet" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="StoreProfile"
+        component={StoreProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="store" size={20} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 export default function AppNavigator() {
   const { user } = useAuth();
 
@@ -163,6 +293,22 @@ export default function AppNavigator() {
             name="ProviderRegister"
             component={ProviderRegisterScreen}
           />
+          <Stack.Screen name="LabLogin" component={LabLoginScreen} />
+          <Stack.Screen name="LabRegister" component={LabRegisterScreen} />
+          <Stack.Screen name="StoreLogin" component={StoreLoginScreen} />
+          <Stack.Screen name="StoreRegister" component={StoreRegisterScreen} />
+        </>
+      ) : user.role === 'provider' ? (
+        <>
+          <Stack.Screen name="ProviderTabs" component={ProviderTabs} />
+        </>
+      ) : user.role === 'lab' ? (
+        <>
+          <Stack.Screen name="LabTabs" component={LabTabs} />
+        </>
+      ) : user.role === 'store' ? (
+        <>
+          <Stack.Screen name="StoreTabs" component={StoreTabs} />
         </>
       ) : (
         <>
@@ -178,7 +324,6 @@ export default function AppNavigator() {
             component={ProviderDetailScreen}
           />
           <Stack.Screen name="Payment" component={PaymentScreen} />
-          <Stack.Screen name="ProviderTabs" component={ProviderTabs} />
         </>
       )}
     </Stack.Navigator>
