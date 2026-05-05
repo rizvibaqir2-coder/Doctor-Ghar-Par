@@ -35,6 +35,16 @@ import StoreDashboardScreen from '../screens/store/StoreDashboardScreen';
 import StoreEarningsScreen from '../screens/store/StoreEarningsScreen';
 import StoreProfileScreen from '../screens/store/StoreProfileScreen';
 
+import SpecialistLoginScreen from '../screens/specialist/SpecialistLoginScreen';
+import SpecialistRegisterScreen from '../screens/specialist/SpecialistRegisterScreen';
+import SpecialistDashboardScreen from '../screens/specialist/SpecialistDashboardScreen';
+import SpecialistEarningsScreen from '../screens/specialist/SpecialistEarningsScreen';
+import SpecialistProfileScreen from '../screens/specialist/SpecialistProfileScreen';
+
+import AdminLoginScreen from '../screens/admin/AdminLoginScreen';
+import AdminDashboardScreen from '../screens/admin/AdminDashboardScreen';
+import AdminProfileScreen from '../screens/admin/AdminProfileScreen';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -278,6 +288,114 @@ function StoreTabs() {
   );
 }
 
+function SpecialistTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: COLORS.white,
+          borderTopWidth: 0,
+          height: 85,
+          paddingBottom: 30,
+          paddingTop: 10,
+          shadowColor: COLORS.shadow,
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 8,
+        },
+        tabBarActiveTintColor: '#7C3AED',
+        tabBarInactiveTintColor: COLORS.gray,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="SpecialistDashboard"
+        component={SpecialistDashboardScreen}
+        options={{
+          tabBarLabel: 'Appointments',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="calendar-check" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SpecialistEarnings"
+        component={SpecialistEarningsScreen}
+        options={{
+          tabBarLabel: 'Earnings',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="wallet" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="SpecialistProfile"
+        component={SpecialistProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-md" size={20} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function AdminTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: COLORS.white,
+          borderTopWidth: 0,
+          height: 85,
+          paddingBottom: 30,
+          paddingTop: 10,
+          shadowColor: COLORS.shadow,
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 8,
+        },
+        tabBarActiveTintColor: '#DC2626',
+        tabBarInactiveTintColor: COLORS.gray,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="AdminDashboard"
+        component={AdminDashboardScreen}
+        options={{
+          tabBarLabel: 'Dashboard',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="chart-pie" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="AdminProfile"
+        component={AdminProfileScreen}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-shield" size={20} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 export default function AppNavigator() {
   const { user } = useAuth();
 
@@ -297,6 +415,9 @@ export default function AppNavigator() {
           <Stack.Screen name="LabRegister" component={LabRegisterScreen} />
           <Stack.Screen name="StoreLogin" component={StoreLoginScreen} />
           <Stack.Screen name="StoreRegister" component={StoreRegisterScreen} />
+          <Stack.Screen name="SpecialistLogin" component={SpecialistLoginScreen} />
+          <Stack.Screen name="SpecialistRegister" component={SpecialistRegisterScreen} />
+          <Stack.Screen name="AdminLogin" component={AdminLoginScreen} />
         </>
       ) : user.role === 'provider' ? (
         <>
@@ -309,6 +430,14 @@ export default function AppNavigator() {
       ) : user.role === 'store' ? (
         <>
           <Stack.Screen name="StoreTabs" component={StoreTabs} />
+        </>
+      ) : user.role === 'specialist' ? (
+        <>
+          <Stack.Screen name="SpecialistTabs" component={SpecialistTabs} />
+        </>
+      ) : user.role === 'admin' ? (
+        <>
+          <Stack.Screen name="AdminTabs" component={AdminTabs} />
         </>
       ) : (
         <>

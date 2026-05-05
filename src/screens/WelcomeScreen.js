@@ -71,6 +71,18 @@ export default function WelcomeScreen({ navigation }) {
             variant="outline"
             style={styles.storeButton}
           />
+          <Button
+            title="I'm a Specialized Doctor"
+            onPress={() => navigation.navigate('SpecialistLogin')}
+            variant="outline"
+            style={styles.specialistButton}
+          />
+          <Button
+            title="Admin Dashboard"
+            onPress={() => navigation.navigate('AdminLogin')}
+            variant="outline"
+            style={styles.adminButton}
+          />
         </View>
       </View>
     </View>
@@ -187,5 +199,11 @@ const styles = StyleSheet.create({
   },
   storeButton: {
     borderColor: '#10B981',
+  },
+  specialistButton: {
+    borderColor: '#7C3AED',
+  },
+  adminButton: {
+    borderColor: '#DC2626',
   },
 });
