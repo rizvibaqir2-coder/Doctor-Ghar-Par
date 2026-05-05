@@ -20,6 +20,7 @@ const FILTER_OPTIONS = [
   { id: 'Physiotherapist', label: 'Physio', icon: 'running' },
   { id: 'Wound', label: 'Dressing', icon: 'band-aid' },
   { id: 'Palliative', label: 'Palliative', icon: 'hands-helping' },
+  { id: 'Ortho Technician', label: 'POP/Cast', icon: 'bone' },
 ];
 
 const SORT_OPTIONS = ['Nearest', 'Top Rated', 'Lowest Price'];
