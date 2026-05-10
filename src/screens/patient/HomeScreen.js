@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,14 +8,62 @@ import {
   FlatList,
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { COLORS, SIZES, FONTS, SERVICES } from '../../constants';
+import { COLORS, SIZES, FONTS, SERVICES, SERVICE_CATEGORIES } from '../../constants';
 import { useAuth } from '../../context/AuthContext';
 import ServiceIcon from '../../components/ServiceIcon';
 import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 export default function HomeScreen({ navigation }) {
-  const { user } = useAuth();
+  const { user, switchRole } = useAuth();
   const firstName = user?.name?.split(' ')[0] || 'Patient';
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredServices = selectedCategory === 'all'
+    ? SERVICES
+    : SERVICES.filter((s) => {
+        const cat = SERVICE_CATEGORIES.find((c) => c.id === selectedCategory);
+        return cat?.serviceIds?.includes(s.id);
+      });
+
+  const handleCategoryPress = (category) => {
+    if (category.isExternal && category.id === 'pharmacy') {
+      switchRole('store');
+      return;
+    }
+    if (category.isExternal && category.id === 'specialist') {
+      switchRole('specialist');
+      return;
+    }
+    setSelectedCategory(category.id);
+  };
+
+  const renderCategoryItem = (category) => {
+    const isActive = selectedCategory === category.id;
+    return (
+      <TouchableOpacity
+        key={category.id}
+        style={[
+          styles.categoryCard,
+          { borderColor: category.color },
+          isActive && { backgroundColor: category.bgColor, borderColor: category.color },
+        ]}
+        activeOpacity={0.7}
+        onPress={() => handleCategoryPress(category)}
+      >
+        <View style={[styles.categoryIconWrap, { backgroundColor: isActive ? category.color : category.bgColor }]}>
+          <FontAwesome5 name={category.icon} size={16} color={isActive ? '#FFFFFF' : category.color} />
+        </View>
+        <Text style={[styles.categoryName, isActive && { color: category.color, fontWeight: '700' }]} numberOfLines={1}>
+          {category.name}
+        </Text>
+        {category.isExternal && (
+          <View style={[styles.externalBadge, { backgroundColor: category.color }]}>
+            <FontAwesome5 name="external-link-alt" size={8} color="#FFFFFF" />
+          </View>
+        )}
+      </TouchableOpacity>
+    );
+  };
 
   const renderServiceCard = ({ item }) => (
     <TouchableOpacity
@@ -73,18 +121,41 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>Our Services</Text>
-        <Text style={styles.sectionSubtitle}>Choose what you need</Text>
+        <Text style={styles.sectionTitle}>Healthcare Facilities</Text>
+        <Text style={styles.sectionSubtitle}>Tap a category to browse services</Text>
+      </View>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoriesRow}
+      >
+        {SERVICE_CATEGORIES.map(renderCategoryItem)}
+      </ScrollView>
+
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>
+          {selectedCategory === 'all' ? 'All Services' : SERVICE_CATEGORIES.find((c) => c.id === selectedCategory)?.name || 'Services'}
+        </Text>
+        <Text style={styles.sectionSubtitle}>
+          {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''} available
+        </Text>
       </View>
 
       <FlatList
-        data={SERVICES}
+        data={filteredServices}
         renderItem={renderServiceCard}
         keyExtractor={(item) => item.id}
         numColumns={2}
-        columnWrapperStyle={styles.serviceRow}
+        columnWrapperStyle={filteredServices.length > 1 ? styles.serviceRow : undefined}
         scrollEnabled={false}
         contentContainerStyle={styles.servicesGrid}
+        ListEmptyComponent={
+          <View style={styles.emptyState}>
+            <FontAwesome5 name="info-circle" size={24} color={COLORS.gray} />
+            <Text style={styles.emptyText}>No services in this category</Text>
+          </View>
+        }
       />
 
       <View style={styles.statsRow}>
@@ -227,6 +298,50 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
     marginTop: 2,
   },
+  categoriesRow: {
+    paddingHorizontal: SIZES.lg,
+    paddingBottom: SIZES.md,
+    gap: 10,
+  },
+  categoryCard: {
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: SIZES.radius,
+    backgroundColor: COLORS.white,
+    borderWidth: 1.5,
+    borderColor: '#E5E7EB',
+    minWidth: 80,
+    shadowColor: COLORS.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  categoryIconWrap: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  categoryName: {
+    ...FONTS.caption,
+    color: COLORS.black,
+    textAlign: 'center',
+    fontSize: 11,
+  },
+  externalBadge: {
+    position: 'absolute',
+    top: 6,
+    right: 6,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   servicesGrid: {
     paddingHorizontal: SIZES.lg,
   },
@@ -266,6 +381,15 @@ const styles = StyleSheet.create({
     ...FONTS.caption,
     color: COLORS.gray,
     marginLeft: 4,
+  },
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: SIZES.xl,
+  },
+  emptyText: {
+    ...FONTS.body,
+    color: COLORS.gray,
+    marginTop: SIZES.sm,
   },
   statsRow: {
     flexDirection: 'row',

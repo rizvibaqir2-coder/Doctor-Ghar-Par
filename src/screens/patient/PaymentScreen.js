@@ -42,9 +42,9 @@ export default function PaymentScreen({ route, navigation }) {
         {
           text: 'View Bookings',
           onPress: () =>
-            navigation.navigate('MainTabs', { screen: 'Bookings' }),
+            navigation.navigate('RoleTabs', { screen: 'Bookings' }),
         },
-        { text: 'OK', onPress: () => navigation.navigate('MainTabs') },
+        { text: 'OK', onPress: () => navigation.navigate('RoleTabs') },
       ]
     );
   };

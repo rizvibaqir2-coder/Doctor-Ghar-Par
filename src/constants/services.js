@@ -280,6 +280,90 @@ export const SERVICES = [
   },
 ];
 
+export const SERVICE_CATEGORIES = [
+  {
+    id: 'all',
+    name: 'All',
+    icon: 'th-large',
+    color: '#0D6EFD',
+    bgColor: '#E7F1FF',
+  },
+  {
+    id: 'doctor',
+    name: 'Doctor Visit',
+    icon: 'user-md',
+    color: '#0D6EFD',
+    bgColor: '#E7F1FF',
+    serviceIds: ['1'],
+  },
+  {
+    id: 'injections',
+    name: 'Injections',
+    icon: 'syringe',
+    color: '#00C48C',
+    bgColor: '#E6FAF3',
+    serviceIds: ['2a', '2', '2b', '2c'],
+  },
+  {
+    id: 'lab',
+    name: 'Lab Tests',
+    icon: 'flask',
+    color: '#F59E0B',
+    bgColor: '#FEF3C7',
+    serviceIds: ['3', '4'],
+  },
+  {
+    id: 'nursing',
+    name: 'Nursing Care',
+    icon: 'user-nurse',
+    color: '#EC4899',
+    bgColor: '#FCE7F3',
+    serviceIds: ['5', '7', '8'],
+  },
+  {
+    id: 'pharmacy',
+    name: 'Medical Store',
+    icon: 'pills',
+    color: '#10B981',
+    bgColor: '#D1FAE5',
+    serviceIds: [],
+    isExternal: true,
+  },
+  {
+    id: 'specialist',
+    name: 'Specialist',
+    icon: 'briefcase-medical',
+    color: '#7C3AED',
+    bgColor: '#EDE9FE',
+    serviceIds: [],
+    isExternal: true,
+  },
+  {
+    id: 'therapy',
+    name: 'Physiotherapy',
+    icon: 'running',
+    color: '#14B8A6',
+    bgColor: '#CCFBF1',
+    serviceIds: ['6'],
+  },
+  {
+    id: 'palliative',
+    name: 'Palliative Care',
+    icon: 'hands-helping',
+    color: '#A855F7',
+    bgColor: '#F3E8FF',
+    serviceIds: ['9'],
+  },
+  {
+    id: 'orthopedic',
+    name: 'POP Cast',
+    icon: 'bone',
+    color: '#78716C',
+    bgColor: '#F5F5F4',
+    serviceIds: ['10'],
+  },
+];
+
 export const PROVIDER_ROLES = [
   {
     id: 'doctor',
