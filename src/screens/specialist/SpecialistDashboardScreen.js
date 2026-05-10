@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { COLORS, SIZES, FONTS } from '../../constants';
 import StatusBadge from '../../components/StatusBadge';
 import { useAuth } from '../../context/AuthContext';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 const SPEC_COLOR = '#7C3AED';
 const SPEC_BG = '#EDE9FE';
@@ -161,7 +162,8 @@ export default function SpecialistDashboardScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.headerTitle}>{user?.name || 'Doctor'}</Text>
           <Text style={styles.headerSubtitle}>Manage home checkup appointments</Text>
         </View>

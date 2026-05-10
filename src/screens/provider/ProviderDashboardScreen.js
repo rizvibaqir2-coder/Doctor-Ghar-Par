@@ -13,6 +13,7 @@ import { COLORS, SIZES, FONTS, PROVIDER_BOOKINGS_DATA } from '../../constants';
 import ServiceIcon from '../../components/ServiceIcon';
 import StatusBadge from '../../components/StatusBadge';
 import { useAuth } from '../../context/AuthContext';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 const TABS = ['Today', 'Upcoming', 'Completed'];
 
@@ -110,7 +111,8 @@ export default function ProviderDashboardScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.greeting}>
             Hello, Dr. {user?.name?.split(' ')[0] || 'Provider'}
           </Text>

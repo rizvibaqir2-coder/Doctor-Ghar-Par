@@ -17,6 +17,7 @@ import {
   SPECIALIST_FEE_PERCENT,
 } from '../../constants/payments';
 import { useAuth } from '../../context/AuthContext';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 const ADMIN_COLOR = '#DC2626';
 const ADMIN_BG = '#FEE2E2';
@@ -49,7 +50,8 @@ export default function AdminDashboardScreen() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.greeting}>Welcome back,</Text>
           <Text style={styles.headerTitle}>{user?.name || 'Admin'}</Text>
         </View>

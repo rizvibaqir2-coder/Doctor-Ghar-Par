@@ -42,13 +42,17 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const switchRole = (newRole) => {
+    setUser((prev) => (prev ? { ...prev, role: newRole } : null));
+  };
+
   const updateProfile = (updates) => {
     setUser((prev) => ({ ...prev, ...updates }));
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoading, login, register, logout, updateProfile }}
+      value={{ user, isLoading, login, register, logout, switchRole, updateProfile }}
     >
       {children}
     </AuthContext.Provider>

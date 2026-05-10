@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { COLORS, SIZES, FONTS } from '../../constants';
 import StatusBadge from '../../components/StatusBadge';
 import { useAuth } from '../../context/AuthContext';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 const STORE_COLOR = '#10B981';
 const STORE_BG = '#D1FAE5';
@@ -159,7 +160,8 @@ export default function StoreDashboardScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.greeting}>
             {user?.name || 'Store Dashboard'}
           </Text>

@@ -13,7 +13,6 @@ import { COLORS, SIZES, FONTS } from '../../constants';
 import {
   PAYMENT_METHODS,
   calculateFees,
-  PLATFORM_FEE_PERCENT,
 } from '../../constants/payments';
 
 export default function PaymentScreen({ route, navigation }) {
@@ -106,48 +105,17 @@ export default function PaymentScreen({ route, navigation }) {
 
         {/* Fee Breakdown */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Fee Breakdown</Text>
+          <Text style={styles.sectionTitle}>Payment Summary</Text>
           <View style={styles.feeCard}>
             <View style={styles.feeRow}>
               <Text style={styles.feeLabel}>Service Fee</Text>
               <Text style={styles.feeValue}>Rs {fees.servicePrice}</Text>
             </View>
-            <View style={styles.feeRow}>
-              <View style={styles.feeLabelRow}>
-                <Text style={styles.feeLabel}>
-                  Platform Fee ({PLATFORM_FEE_PERCENT}%)
-                </Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    Alert.alert(
-                      'Platform Fee',
-                      `A ${PLATFORM_FEE_PERCENT}% platform fee is charged to maintain the service, ensure quality providers, and offer customer support.`
-                    )
-                  }
-                >
-                  <FontAwesome5
-                    name="info-circle"
-                    size={12}
-                    color={COLORS.gray}
-                    style={{ marginLeft: 6 }}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.feeValue}>Rs {fees.platformFee}</Text>
-            </View>
             <View style={styles.feeDivider} />
             <View style={styles.feeRow}>
-              <Text style={styles.totalLabel}>Total Amount</Text>
+              <Text style={styles.totalLabel}>Total to Pay</Text>
               <Text style={styles.totalValue}>Rs {fees.totalPatientPays}</Text>
             </View>
-          </View>
-
-          <View style={styles.infoBox}>
-            <FontAwesome5 name="info-circle" size={14} color={COLORS.info} />
-            <Text style={styles.infoText}>
-              Rs {fees.platformFee} goes to the platform and Rs{' '}
-              {fees.providerEarnings} goes to your healthcare provider.
-            </Text>
           </View>
         </View>
 

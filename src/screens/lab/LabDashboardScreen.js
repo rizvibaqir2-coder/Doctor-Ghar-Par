@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { COLORS, SIZES, FONTS } from '../../constants';
 import StatusBadge from '../../components/StatusBadge';
 import { useAuth } from '../../context/AuthContext';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 const LAB_COLOR = '#F59E0B';
 const LAB_BG = '#FEF3C7';
@@ -156,7 +157,8 @@ export default function LabDashboardScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.greeting}>
             {user?.name || 'Lab Dashboard'}
           </Text>

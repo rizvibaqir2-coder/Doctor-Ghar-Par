@@ -11,6 +11,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { COLORS, SIZES, FONTS, SERVICES } from '../../constants';
 import { useAuth } from '../../context/AuthContext';
 import ServiceIcon from '../../components/ServiceIcon';
+import DrawerMenuButton from '../../components/DrawerMenuButton';
 
 export default function HomeScreen({ navigation }) {
   const { user } = useAuth();
@@ -35,7 +36,8 @@ export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
-        <View>
+        <DrawerMenuButton />
+        <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={styles.greeting}>Hello, {firstName}</Text>
           <Text style={styles.headerSubtitle}>What service do you need today?</Text>
         </View>
